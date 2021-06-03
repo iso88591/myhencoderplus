@@ -30,10 +30,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun geometricTransformation(view: View) {
-        ShowViewActivity.start(this,TransformationView::class.java)
+        ShowViewActivity.start(this, TransformationView::class.java)
     }
 
     fun onePlus(view: View) {
-        ShowViewActivity.start(this,ColorsTextView::class.java)
+        ShowViewActivity.start(this, ColorsTextView::class.java)
+//        ShimmerLayout
+    }
+
+    fun onePlus2(view: View) {
+        ShowViewFromLayoutActivity.start(this, R.layout.layout_color_framlayout)
     }
 }
