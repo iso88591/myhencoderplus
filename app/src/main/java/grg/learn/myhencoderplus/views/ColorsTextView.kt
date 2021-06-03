@@ -5,7 +5,6 @@ import android.content.Context
 import android.graphics.*
 import android.text.TextPaint
 import android.util.AttributeSet
-import android.util.Log
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
 import grg.learn.myhencoderplus.ext.sp
@@ -48,19 +47,17 @@ class ColorsTextView @JvmOverloads constructor(
 
     init {
 
-        val ofFloat = ObjectAnimator.ofFloat(this, "clipDistance", 0f, 1000f)
+        textMetrics = textPaint.fontMetrics
+        textWidth = textPaint.measureText(text)
+
+        val ofFloat = ObjectAnimator.ofFloat(this, "clipDistance", 0f, textWidth + clipWidth)
         ofFloat.startDelay = 1000
         ofFloat.duration = 1300
         ofFloat.interpolator = AccelerateDecelerateInterpolator()
+        ofFloat.repeatCount = -1
         ofFloat.start()
 
 
-    }
-
-    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
-        super.onSizeChanged(w, h, oldw, oldh)
-        textMetrics = textPaint.fontMetrics
-        textWidth = textPaint.measureText(text)
     }
 
     override fun onDraw(canvas: Canvas) {
@@ -74,44 +71,43 @@ class ColorsTextView @JvmOverloads constructor(
         val textR = width / 2f + textWidth / 2f
         val textB = textBottomY + textMetrics.bottom
 
+        val textHeight = textB - textT
+        val tanWidth = textHeight / tan(Math.toRadians(clipAngle.toDouble())).toFloat()
+
         clipPath.reset()
 //        //左上角点
         clipPath.moveTo(
-            textL + clipDistance,
+            textL - tanWidth - clipWidth + clipDistance,
             textT
         )
 
 //        //右上角点
         clipPath.lineTo(
-            textL + clipDistance + clipWidth,
+            textL + clipDistance + clipWidth - tanWidth - clipWidth,
             textT
         )
-        val textHeight = textB - textT
+
 //        //右下角点
         clipPath.lineTo(
-            textL + clipDistance + clipWidth + textHeight / tan(Math.toRadians(clipAngle.toDouble())).toFloat(),
+            -tanWidth - clipWidth + textL + clipDistance + clipWidth + textHeight / tan(
+                Math.toRadians(
+                    clipAngle.toDouble()
+                )
+            ).toFloat(),
             textB
-        )
-        Log.e(
-            "TAG",
-            """
-onDraw: ${tan(Math.toRadians(30.0))} 
-value=${textHeight / tan(Math.toRadians(clipAngle.toDouble())).toFloat()}                
-l = ${textL}                
-t = ${textT}                
-r = ${textR}                
-b = ${textB}                
-                
-            """.trimIndent(),
         )
 //        //左下角点
         clipPath.lineTo(
-            textL + clipDistance + clipWidth + textHeight / tan(Math.toRadians(clipAngle.toDouble())).toFloat() - clipWidth,
+            -tanWidth - clipWidth + textL + clipDistance + clipWidth + textHeight / tan(
+                Math.toRadians(
+                    clipAngle.toDouble()
+                )
+            ).toFloat() - clipWidth,
             textB
         )
 //        //回归左上角
         clipPath.lineTo(
-            textL + clipDistance,
+            textL + clipDistance - tanWidth - clipWidth,
             textT
         )
         clipPath.close()
@@ -128,6 +124,8 @@ b = ${textB}
             textPaint
         )
         canvas.restore()
+
+
 
 
         canvas.save()
