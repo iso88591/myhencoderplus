@@ -39,11 +39,11 @@ class TransformationView @JvmOverloads constructor(
 
     init {
 
-        val ofFloat = ObjectAnimator.ofFloat(this, "angle", 0f, 50f)
+        val ofFloat = ObjectAnimator.ofFloat(this, "angle", 0f, 60f)
         ofFloat.startDelay = 200
         ofFloat.duration = 2000
 
-        val fold = ObjectAnimator.ofFloat(this, "foldAngle", 0f, 45f)
+        val fold = ObjectAnimator.ofFloat(this, "foldAngle", 0f, 60f)
         fold.startDelay = 200
         fold.duration = 2000
 
