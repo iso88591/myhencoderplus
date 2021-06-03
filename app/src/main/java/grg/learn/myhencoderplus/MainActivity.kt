@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import grg.learn.myhencoderplus.views.ColorsTextView
 import grg.learn.myhencoderplus.views.TransformationView
 
 class MainActivity : AppCompatActivity() {
@@ -30,5 +31,9 @@ class MainActivity : AppCompatActivity() {
 
     fun geometricTransformation(view: View) {
         ShowViewActivity.start(this,TransformationView::class.java)
+    }
+
+    fun onePlus(view: View) {
+        ShowViewActivity.start(this,ColorsTextView::class.java)
     }
 }
