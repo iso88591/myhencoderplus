@@ -53,7 +53,7 @@ class ColorsTextView @JvmOverloads constructor(
         val ofFloat = ObjectAnimator.ofFloat(this, "clipDistance", 0f, textWidth + clipWidth)
         ofFloat.startDelay = 1000
         ofFloat.duration = 1300
-        ofFloat.interpolator = AccelerateDecelerateInterpolator()
+//        ofFloat.interpolator = AccelerateDecelerateInterpolator()
         ofFloat.repeatCount = -1
         ofFloat.start()
 
