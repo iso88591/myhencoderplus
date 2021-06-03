@@ -6,7 +6,6 @@ import android.graphics.*
 import android.text.TextPaint
 import android.util.AttributeSet
 import android.view.View
-import android.view.animation.AccelerateDecelerateInterpolator
 import grg.learn.myhencoderplus.ext.sp
 import kotlin.math.abs
 import kotlin.math.tan
@@ -53,12 +52,13 @@ class ColorsTextView @JvmOverloads constructor(
         val ofFloat = ObjectAnimator.ofFloat(this, "clipDistance", 0f, textWidth + clipWidth)
         ofFloat.startDelay = 1000
         ofFloat.duration = 1300
-//        ofFloat.interpolator = AccelerateDecelerateInterpolator()
         ofFloat.repeatCount = -1
         ofFloat.start()
 
 
     }
+
+    val xfermode = PorterDuffXfermode(PorterDuff.Mode.MULTIPLY)
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
@@ -112,9 +112,13 @@ class ColorsTextView @JvmOverloads constructor(
         )
         clipPath.close()
 
-        canvas.save()
-        canvas.clipPath(clipPath, Region.Op.DIFFERENCE)
-        textPaint.color = Color.BLACK
+        val saveLayer = canvas.saveLayer(
+            textL,
+            textT,
+            textR,
+            textB
+            , null)
+        textPaint.color = Color.BLUE
         canvas.drawText(
             text,
             0,
@@ -123,25 +127,13 @@ class ColorsTextView @JvmOverloads constructor(
             textBottomY,
             textPaint
         )
-        canvas.restore()
-
-
-
-
-        canvas.save()
-        canvas.clipPath(clipPath)
+        textPaint.xfermode = xfermode
 
         textPaint.color = Color.RED
-        canvas.drawText(
-            text,
-            0,
-            text.length,
-            width / 2f,
-            textBottomY,
-            textPaint
-        )
+        canvas.drawPath(clipPath, textPaint)
+        textPaint.xfermode = null
 
-        canvas.restore()
+        canvas.restoreToCount(saveLayer)
 
     }
 
