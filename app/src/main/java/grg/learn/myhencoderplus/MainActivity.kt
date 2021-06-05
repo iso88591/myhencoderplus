@@ -3,42 +3,109 @@ package grg.learn.myhencoderplus
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
+import android.widget.FrameLayout
+import android.widget.LinearLayout
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.NestedScrollView
+import grg.learn.myhencoderplus.viewmodels.TestViewModel
+import grg.learn.myhencoderplus.views.Animate1
+import grg.learn.myhencoderplus.views.Animate2
 import grg.learn.myhencoderplus.views.ColorsTextView
 import grg.learn.myhencoderplus.views.TransformationView
 
 class MainActivity : AppCompatActivity() {
+
+    val vm by viewModels<TestViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(NestedScrollView(this).also {
+            it.layoutParams = FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
+            it.addView(LinearLayout(it.context).apply {
+                layoutParams = FrameLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+                )
+                orientation = LinearLayout.VERTICAL
+
+                button(
+                    "OnePlus浏览器特效 加强版",
+                    R.layout.layout_color_framlayout
+                )
+
+                buttonView(
+                    "OnePlus浏览器特效",
+                    ColorsTextView::class.java
+                )
+                buttonView(
+                    "几何变换",
+                    TransformationView::class.java
+                )
+                button(
+                    "画文字1",
+                    TransFermodeActivity::class.java
+                )
+
+                button(
+                    "画文字1",
+                    TransFermodeActivity::class.java
+                )
+
+                button(
+                    "仪表盘",
+                    InstrumentActivity::class.java
+                )
+
+                buttonView(
+                    "饼图",
+                    PieActivity::class.java
+                )
+
+                buttonView(
+                    "动画 1 简单的属性动画 圆放大缩小",
+                    Animate2::class.java
+                )
+
+                buttonView(
+                    "动画 2 头 变形",
+                    Animate1::class.java
+                )
+
+
+            })
+
+        })
+
     }
 
-    fun instrument(view: View) {
-        startActivity(Intent(this, InstrumentActivity::class.java))
+    fun ViewGroup.button(text: String, layout: Int) = button(text) {
+        ShowViewFromLayoutActivity.start(this@MainActivity, layout)
     }
 
-    fun pie(view: View) {
-        startActivity(Intent(this, PieActivity::class.java))
+    fun ViewGroup.button(text: String, clazz: Class<*>) = button(text) {
+        startActivity(Intent(this@MainActivity, clazz))
     }
 
-    fun transFerMode(view: View) {
-        startActivity(Intent(this, TransFermodeActivity::class.java))
+    fun ViewGroup.buttonView(text: String, clazz: Class<*>) = button(text) {
+        ShowViewActivity.start(this@MainActivity, clazz)
     }
 
-    fun text1(view: View) {
-        startActivity(Intent(this, DrawText1Activity::class.java))
+    fun ViewGroup.button(text: String, click: View.OnClickListener) {
+        addView(Button(context).also {
+            it.layoutParams = FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.MATCH_PARENT,
+                FrameLayout.LayoutParams.WRAP_CONTENT,
+            )
+            it.text = text
+            it.setOnClickListener(click)
+        })
     }
 
-    fun geometricTransformation(view: View) {
-        ShowViewActivity.start(this, TransformationView::class.java)
-    }
 
-    fun onePlus(view: View) {
-        ShowViewActivity.start(this, ColorsTextView::class.java)
-//        ShimmerLayout
-    }
-
-    fun onePlus2(view: View) {
-        ShowViewFromLayoutActivity.start(this, R.layout.layout_color_framlayout)
-    }
 }
