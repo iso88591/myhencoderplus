@@ -11,10 +11,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.NestedScrollView
 import grg.learn.myhencoderplus.viewmodels.TestViewModel
-import grg.learn.myhencoderplus.views.Animate1
-import grg.learn.myhencoderplus.views.Animate2
-import grg.learn.myhencoderplus.views.ColorsTextView
-import grg.learn.myhencoderplus.views.TransformationView
+import grg.learn.myhencoderplus.views.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -73,7 +70,7 @@ class MainActivity : AppCompatActivity() {
                 )
 
                 buttonView(
-                    "动画 2 头 变形",
+                    "动画 2 扔物线裂开了",
                     Animate1::class.java
                 )
 
