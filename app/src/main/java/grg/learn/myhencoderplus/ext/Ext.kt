@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Camera
 import android.util.TypedValue
 import androidx.annotation.DrawableRes
 
@@ -32,7 +33,7 @@ val Int.sp: Float
 
 
 //头像
-fun Context.getAvatar(@DrawableRes image: Int,targetWidth:Int): Bitmap {
+fun Context.getAvatar(@DrawableRes image: Int, targetWidth: Int): Bitmap {
     val options = BitmapFactory.Options()
     options.inJustDecodeBounds = true
     BitmapFactory.decodeResource(resources, image, options)
@@ -40,4 +41,24 @@ fun Context.getAvatar(@DrawableRes image: Int,targetWidth:Int): Bitmap {
     options.inDensity = options.outWidth
     options.inTargetDensity = targetWidth
     return BitmapFactory.decodeResource(resources, image, options)
+}
+
+/**
+ * inline fun Canvas.withSave(block: Canvas.() -> Unit) {
+val checkpoint = save()
+try {
+block()
+} finally {
+restoreToCount(checkpoint)
+}
+}
+ */
+
+inline fun Camera.withSave(block: (Camera) -> Unit) {
+    save()
+    try {
+        block(this)
+    } finally {
+        restore()
+    }
 }

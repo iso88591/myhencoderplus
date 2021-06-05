@@ -79,6 +79,11 @@ class MainActivity : AppCompatActivity() {
                     Animate3::class.java
                 )
 
+                buttonView(
+                    "动画 3 组合动画2",
+                    Animate4::class.java
+                )
+
 
             })
 
