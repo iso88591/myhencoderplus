@@ -1,5 +1,6 @@
 package grg.learn.myhencoderplus.views
 
+import android.animation.ObjectAnimator
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
@@ -21,6 +22,17 @@ class Animate2 @JvmOverloads constructor(
     val paint = Paint(Paint.ANTI_ALIAS_FLAG).also {
         it.color = Color.BLUE
         it.style = Paint.Style.FILL
+    }
+
+    init {
+        setOnClickListener {
+
+            val an = ObjectAnimator.ofFloat(this, "RADIS", 200f, 400f)
+            an.startDelay = 400
+            an.duration = 1000
+            an.start()
+
+        }
     }
 
     override fun onDraw(canvas: Canvas) {
