@@ -47,25 +47,25 @@ class Animate4 @JvmOverloads constructor(
 
     init {
 
-//        setOnClickListener {
-//
-//            topRotate = 0f
-//            obliqueAngle = 0f
-//            bottomRotate = 0f
-//            invalidate()
-//
-//            with(AnimatorSet()) {
-//                playSequentially(
-//                    ObjectAnimator.ofFloat(this@Animate4, "bottomRotate", 0f, 45f),
-//                    ObjectAnimator.ofFloat(this@Animate4, "obliqueAngle", 0f, 270f),
-//                    ObjectAnimator.ofFloat(this@Animate4, "topRotate", 0f, -45f),
-//                )
-//                startDelay = 500
-//                duration = 2000
-//                start()
-//            }
-//
-//        }
+        setOnClickListener {
+
+            topRotate = 0f
+            obliqueAngle = 0f
+            bottomRotate = 0f
+            invalidate()
+
+            with(AnimatorSet()) {
+                playSequentially(
+                    ObjectAnimator.ofFloat(this@Animate4, "bottomRotate", 0f, 45f),
+                    ObjectAnimator.ofFloat(this@Animate4, "obliqueAngle", 0f, 270f),
+                    ObjectAnimator.ofFloat(this@Animate4, "topRotate", 0f, -45f),
+                )
+                startDelay = 500
+                duration = 2000
+                start()
+            }
+
+        }
 
     }
 
