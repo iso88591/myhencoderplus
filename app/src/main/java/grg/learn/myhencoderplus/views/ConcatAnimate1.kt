@@ -1,7 +1,7 @@
 package grg.learn.myhencoderplus.views
 
-import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.animation.PropertyValuesHolder
 import android.content.Context
 import android.graphics.Camera
 import android.graphics.Canvas
@@ -53,35 +53,60 @@ class ConcatAnimate1 @JvmOverloads constructor(
 
         setOnClickListener {
 
-            with(AnimatorSet()){
 
-                playSequentially(
-                    ObjectAnimator.ofFloat(
-                        this@ConcatAnimate1,
+            with(
+                ObjectAnimator.ofPropertyValuesHolder(
+                    this,
+                    PropertyValuesHolder.ofFloat(
                         "bottomFlip",
-                        0f,
-                        60f
+                        0f, 60f
                     ),
-                    ObjectAnimator.ofFloat(
-                        this@ConcatAnimate1,
+                    PropertyValuesHolder.ofFloat(
                         "rotate",
-                        0f,
-                        270f
+                        0f, 270f
                     ),
-                    ObjectAnimator.ofFloat(
-                        this@ConcatAnimate1,
+                    PropertyValuesHolder.ofFloat(
                         "topFlip",
-                        0f,
-                        60f
-                    ),
-
-
+                        0f, 60f
+                    )
                 )
+            ) {
 
                 startDelay = 500
                 duration = 2000
                 start()
             }
+
+
+//            with(AnimatorSet()){
+//
+//                playTogether(
+//                    ObjectAnimator.ofFloat(
+//                        this@ConcatAnimate1,
+//                        "bottomFlip",
+//                        0f,
+//                        60f
+//                    ),
+//                    ObjectAnimator.ofFloat(
+//                        this@ConcatAnimate1,
+//                        "rotate",
+//                        0f,
+//                        270f
+//                    ),
+//                    ObjectAnimator.ofFloat(
+//                        this@ConcatAnimate1,
+//                        "topFlip",
+//                        0f,
+//                        60f
+//                    ),
+//
+//
+//                )
+//
+//                startDelay = 500
+//                duration = 2000
+//                start()
+//            }
 
         }
 
