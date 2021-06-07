@@ -69,10 +69,10 @@ class MainActivity : AppCompatActivity() {
                     Animate2::class.java
                 )
 
-                buttonView(
-                    "动画 2 扔物线裂开了",
-                    Animate1::class.java
-                )
+//                buttonView(
+//                    "动画 2 扔物线裂开了",
+//                    Animate1::class.java
+//                )
 
                 buttonView(
                     "动画 3 组合动画",
@@ -83,6 +83,16 @@ class MainActivity : AppCompatActivity() {
                     "动画 3 组合动画2",
                     Animate4::class.java
                 )
+
+                buttonView(
+                    "动画 4 点移动",
+                    PointMoveView::class.java
+                )
+
+//                buttonView(
+//                    "组合动画 任务线头折叠",
+//                    ConcatAnimate1::class.java
+//                )
 
 
             })
