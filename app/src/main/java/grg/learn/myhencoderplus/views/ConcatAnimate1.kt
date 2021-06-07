@@ -1,5 +1,6 @@
 package grg.learn.myhencoderplus.views
 
+import android.animation.Keyframe
 import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
 import android.content.Context
@@ -53,6 +54,7 @@ class ConcatAnimate1 @JvmOverloads constructor(
 
         setOnClickListener {
 
+            val endAngle = 270f
 
             with(
                 ObjectAnimator.ofPropertyValuesHolder(
@@ -63,8 +65,16 @@ class ConcatAnimate1 @JvmOverloads constructor(
                     ),
                     PropertyValuesHolder.ofFloat(
                         "rotate",
-                        0f, 270f
-                    ),
+                        0f, endAngle
+                    ).also {
+                        it.setKeyframes(
+                            Keyframe.ofFloat(0f, 0f * endAngle),
+                            Keyframe.ofFloat(0.1f, 3f * endAngle),
+                            Keyframe.ofFloat(0.6f, 1.6f * endAngle),
+                            Keyframe.ofFloat(1f, 1f * endAngle),
+                        )
+
+                    },
                     PropertyValuesHolder.ofFloat(
                         "topFlip",
                         0f, 60f
