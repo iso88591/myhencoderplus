@@ -4,11 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.FrameLayout
-import android.widget.LinearLayout
+import android.widget.*
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
 import androidx.core.widget.NestedScrollView
 import grg.learn.myhencoderplus.viewmodels.TestViewModel
 import grg.learn.myhencoderplus.views.*
@@ -19,7 +18,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(NestedScrollView(this).also {
+        setContentView(ScrollView(this).also {
             it.layoutParams = FrameLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT
@@ -79,10 +78,10 @@ class MainActivity : AppCompatActivity() {
                     Animate3::class.java
                 )
 
-                buttonView(
-                    "动画 3 组合动画2",
-                    Animate4::class.java
-                )
+//                buttonView(
+//                    "动画 3 组合动画2",
+//                    Animate4::class.java
+//                )
 
                 buttonView(
                     "动画 4 点移动",
@@ -92,6 +91,11 @@ class MainActivity : AppCompatActivity() {
                 buttonView(
                     "组合动画 任务线头折叠",
                     ConcatAnimate1::class.java
+                )
+
+                buttonView(
+                    "字符串动画 TypeEvaluator",
+                    StringValueView::class.java
                 )
 
 
@@ -114,9 +118,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun ViewGroup.button(text: String, click: View.OnClickListener) {
-        addView(Button(context).also {
+        addView(AppCompatButton(context).also {
             it.layoutParams = FrameLayout.LayoutParams(
-                FrameLayout.LayoutParams.MATCH_PARENT,
+                FrameLayout.LayoutParams.WRAP_CONTENT,
                 FrameLayout.LayoutParams.WRAP_CONTENT,
             )
             it.text = text
