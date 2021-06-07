@@ -89,10 +89,10 @@ class MainActivity : AppCompatActivity() {
                     PointMoveView::class.java
                 )
 
-//                buttonView(
-//                    "组合动画 任务线头折叠",
-//                    ConcatAnimate1::class.java
-//                )
+                buttonView(
+                    "组合动画 任务线头折叠",
+                    ConcatAnimate1::class.java
+                )
 
 
             })
