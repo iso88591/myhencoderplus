@@ -9,8 +9,10 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.widget.NestedScrollView
+import com.google.android.material.textview.MaterialTextView
 import grg.learn.myhencoderplus.viewmodels.TestViewModel
 import grg.learn.myhencoderplus.views.*
+import grg.learn.myhencoderplus.viewtry.Try3dRound
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,7 +20,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(ScrollView(this).also {
+        setContentView(NestedScrollView(this).also {
             it.layoutParams = FrameLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT
@@ -96,6 +98,18 @@ class MainActivity : AppCompatActivity() {
                 buttonView(
                     "字符串动画 TypeEvaluator",
                     StringValueView::class.java
+                )
+
+                buttonView(
+                    "try 3d球体",
+                    Try3dRound::class.java
+                )
+
+
+
+                buttonView(
+                    "material editText",
+                    MaterialEditText::class.java
                 )
 
 
