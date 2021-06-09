@@ -9,12 +9,10 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.widget.NestedScrollView
-import com.google.android.material.textview.MaterialTextView
 import grg.learn.myhencoderplus.viewmodels.TestViewModel
 import grg.learn.myhencoderplus.views.*
 import grg.learn.myhencoderplus.viewtry.Try3dRound
 import grg.learn.myhencoderplus.viewtry.XfermodeView
-import grg.learn.myhencoderplus.views.MaterialEditText as MaterialEditText
 
 class MainActivity : AppCompatActivity() {
 
@@ -114,6 +112,14 @@ class MainActivity : AppCompatActivity() {
                     XfermodeView::class.java
                 )
 
+                //方形图片
+                button(
+                    "方形图片",
+                    R.layout.layout_measure_1
+                )
+
+
+                //圆形 view
 
             })
 
