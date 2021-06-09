@@ -46,6 +46,8 @@ class ColorsTextView @JvmOverloads constructor(
 
     init {
 
+        setLayerType(LAYER_TYPE_NONE, textPaint)
+
         textMetrics = textPaint.fontMetrics
         textWidth = textPaint.measureText(text)
 
@@ -116,8 +118,9 @@ class ColorsTextView @JvmOverloads constructor(
             textL,
             textT,
             textR,
-            textB
-            , null)
+            textB, null
+        )
+
         textPaint.color = Color.BLUE
         canvas.drawText(
             text,

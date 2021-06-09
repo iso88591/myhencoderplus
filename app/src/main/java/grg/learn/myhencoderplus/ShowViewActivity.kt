@@ -27,15 +27,16 @@ class ShowViewActivity : AppCompatActivity() {
         val forName = Class.forName(stringExtra)
         val declaredConstructor = forName.getDeclaredConstructor(Context::class.java)
         val newInstance = declaredConstructor.newInstance(this) as View
-        setContentView(FrameLayout(this).also {
-
-            newInstance.layoutParams = ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-            )
-            it.addView(newInstance)
-
-        })
+        setContentView(newInstance)
+//        setContentView(FrameLayout(this).also {
+//
+//            newInstance.layoutParams = ViewGroup.LayoutParams(
+//                ViewGroup.LayoutParams.MATCH_PARENT,
+//                ViewGroup.LayoutParams.WRAP_CONTENT
+//            )
+//            it.addView(newInstance)
+//
+//        })
 
     }
 }

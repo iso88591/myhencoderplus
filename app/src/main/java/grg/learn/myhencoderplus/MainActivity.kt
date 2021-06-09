@@ -13,6 +13,8 @@ import com.google.android.material.textview.MaterialTextView
 import grg.learn.myhencoderplus.viewmodels.TestViewModel
 import grg.learn.myhencoderplus.views.*
 import grg.learn.myhencoderplus.viewtry.Try3dRound
+import grg.learn.myhencoderplus.viewtry.XfermodeView
+import grg.learn.myhencoderplus.views.MaterialEditText as MaterialEditText
 
 class MainActivity : AppCompatActivity() {
 
@@ -108,8 +110,8 @@ class MainActivity : AppCompatActivity() {
 
 
                 buttonView(
-                    "material editText",
-                    MaterialEditText::class.java
+                    "XfermodeView",
+                    XfermodeView::class.java
                 )
 
 

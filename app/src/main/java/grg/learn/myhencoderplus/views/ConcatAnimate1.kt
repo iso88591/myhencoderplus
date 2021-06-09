@@ -1,8 +1,7 @@
 package grg.learn.myhencoderplus.views
 
-import android.animation.Keyframe
+import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
-import android.animation.PropertyValuesHolder
 import android.content.Context
 import android.graphics.Camera
 import android.graphics.Canvas
@@ -56,67 +55,67 @@ class ConcatAnimate1 @JvmOverloads constructor(
 
             val endAngle = 270f
 
-            with(
-                ObjectAnimator.ofPropertyValuesHolder(
-                    this,
-                    PropertyValuesHolder.ofFloat(
-                        "bottomFlip",
-                        0f, 60f
-                    ),
-                    PropertyValuesHolder.ofFloat(
-                        "rotate",
-                        0f, endAngle
-                    ).also {
-                        it.setKeyframes(
-                            Keyframe.ofFloat(0f, 0f * endAngle),
-                            Keyframe.ofFloat(0.1f, 3f * endAngle),
-                            Keyframe.ofFloat(0.6f, 1.6f * endAngle),
-                            Keyframe.ofFloat(1f, 1f * endAngle),
-                        )
-
-                    },
-                    PropertyValuesHolder.ofFloat(
-                        "topFlip",
-                        0f, 60f
-                    )
-                )
-            ) {
-
-                startDelay = 500
-                duration = 2000
-                start()
-            }
-
-
-//            with(AnimatorSet()){
-//
-//                playTogether(
-//                    ObjectAnimator.ofFloat(
-//                        this@ConcatAnimate1,
+//            with(
+//                ObjectAnimator.ofPropertyValuesHolder(
+//                    this,
+//                    PropertyValuesHolder.ofFloat(
 //                        "bottomFlip",
-//                        0f,
-//                        60f
+//                        0f, 60f
 //                    ),
-//                    ObjectAnimator.ofFloat(
-//                        this@ConcatAnimate1,
+//                    PropertyValuesHolder.ofFloat(
 //                        "rotate",
-//                        0f,
-//                        270f
-//                    ),
-//                    ObjectAnimator.ofFloat(
-//                        this@ConcatAnimate1,
+//                        0f, endAngle
+//                    ).also {
+//                        it.setKeyframes(
+//                            Keyframe.ofFloat(0f, 0f * endAngle),
+//                            Keyframe.ofFloat(0.1f, 3f * endAngle),
+//                            Keyframe.ofFloat(0.6f, 1.6f * endAngle),
+//                            Keyframe.ofFloat(1f, 1f * endAngle),
+//                        )
+//
+//                    },
+//                    PropertyValuesHolder.ofFloat(
 //                        "topFlip",
-//                        0f,
-//                        60f
-//                    ),
-//
-//
+//                        0f, 60f
+//                    )
 //                )
+//            ) {
 //
 //                startDelay = 500
 //                duration = 2000
 //                start()
 //            }
+
+
+            with(AnimatorSet()) {
+
+                playSequentially(
+                    ObjectAnimator.ofFloat(
+                        this@ConcatAnimate1,
+                        "bottomFlip",
+                        0f,
+                        60f
+                    ),
+                    ObjectAnimator.ofFloat(
+                        this@ConcatAnimate1,
+                        "rotate",
+                        0f,
+                        270f
+                    ),
+                    ObjectAnimator.ofFloat(
+                        this@ConcatAnimate1,
+                        "topFlip",
+                        0f,
+                        60f
+                    ),
+
+
+                    )
+
+                startDelay = 500
+                duration = 2000
+                start()
+            }
 
         }
 
