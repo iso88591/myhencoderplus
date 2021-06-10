@@ -5,14 +5,10 @@
     android:orientation="horizontal">
 
 
-    <grg.learn.myhencoderplus.views.SquareView
-        android:src="@drawable/ic_avatar"
-        android:layout_width="300dp"
-        android:layout_height="200dp" />
-
-    <View
-        android:background="@android:color/holo_blue_light"
+    <grg.learn.myhencoderplus.views.CustomViewLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:background="@android:color/holo_blue_light"
+        android:src="@drawable/ic_avatar" />
 
 </LinearLayout>

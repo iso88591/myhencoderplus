@@ -120,6 +120,10 @@ class MainActivity : AppCompatActivity() {
 
 
                 //圆形 view
+                button(
+                    "圆形 view",
+                    R.layout.layout_measure_2
+                )
 
             })
 
