@@ -125,6 +125,19 @@ class MainActivity : AppCompatActivity() {
                     R.layout.layout_measure_2
                 )
 
+                //圆形 view
+                button(
+                    "flow layout 城市流布局",
+                    R.layout.layout_city_layout
+                )
+
+
+                //圆形 view
+                button(
+                    "颜色过滤",
+                    R.layout.layout_color_filter
+                )
+
             })
 
         })
