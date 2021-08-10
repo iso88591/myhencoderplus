@@ -2,16 +2,11 @@ package grg.learn.myhencoderplus.views
 
 import android.animation.ObjectAnimator
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Path
+import android.graphics.*
 import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
 import android.widget.FrameLayout
-import androidx.core.content.ContextCompat
 import androidx.core.graphics.withSave
-import androidx.core.view.setPadding
-import grg.learn.myhencoderplus.R
 
 class GlanceView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
@@ -22,12 +17,22 @@ class GlanceView @JvmOverloads constructor(
         intArrayOf(Color.TRANSPARENT, Color.BLUE)
     )
 
+    private val ringWidth = 20
+
     private val gradientPercent = 0.25f
     var offset = 0f
         set(value) {
             field = value
             invalidate()
         }
+
+    private var radius: Float = 0f
+    private val roundPath = Path()
+
+    private val mPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        this.strokeWidth = ringWidth.toFloat()
+        this.style = Paint.Style.STROKE
+    }
 
     init {
         val ani = ObjectAnimator.ofFloat(
@@ -44,21 +49,30 @@ class GlanceView @JvmOverloads constructor(
 
     }
 
-    private val roundPath = Path()
-
-    private val ringDrawable = ContextCompat.getDrawable(context, R.drawable.ic_round_ring)!!
+//    private val ringDrawable = ContextCompat.getDrawable(context, R.drawable.ic_round_ring)!!
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
 
-        val radius = width / 2f
+        radius = width / 2f - ringWidth
         roundPath.addCircle(width / 2f, height / 2f, radius, Path.Direction.CW)
+
+        mPaint.shader = LinearGradient(
+            width/2f,
+            0f,
+            width/2f,
+            height.toFloat(),
+            Color.BLUE,
+            Color.BLACK,
+            Shader.TileMode.CLAMP
+        )
+
     }
 
     override fun dispatchDraw(canvas: Canvas) {
         super.dispatchDraw(canvas)
         gradient.setBounds(
-            0, 0, width, height
+            ringWidth, ringWidth, width - ringWidth, height - ringWidth
         )
         canvas.withSave {
             clipPath(roundPath)
@@ -73,12 +87,14 @@ class GlanceView @JvmOverloads constructor(
 
         }
 
-        ringDrawable.setBounds(
-            0,0,
-            width,
-            height
-        )
-        ringDrawable.draw(canvas)
+        canvas.drawCircle(width/2f, height/2f, radius, mPaint)
+
+//        ringDrawable.setBounds(
+//            0,0,
+//            width,
+//            height
+//        )
+//        ringDrawable.draw(canvas)
 
     }
 }
