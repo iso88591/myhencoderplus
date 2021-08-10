@@ -2,6 +2,7 @@ package grg.learn.myhencoderplus
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
@@ -13,6 +14,7 @@ import grg.learn.myhencoderplus.viewmodels.TestViewModel
 import grg.learn.myhencoderplus.views.*
 import grg.learn.myhencoderplus.viewtry.Try3dRound
 import grg.learn.myhencoderplus.viewtry.XfermodeView
+import kotlin.concurrent.thread
 
 class MainActivity : AppCompatActivity() {
 
@@ -31,6 +33,11 @@ class MainActivity : AppCompatActivity() {
                     ViewGroup.LayoutParams.WRAP_CONTENT
                 )
                 orientation = LinearLayout.VERTICAL
+
+                button(
+                    "扫描",
+                    R.layout.layout_scan
+                )
 
                 button(
                     "OnePlus浏览器特效 加强版",
@@ -138,9 +145,25 @@ class MainActivity : AppCompatActivity() {
                     R.layout.layout_color_filter
                 )
 
+                button("kill") {
+                    it.requestLayout()
+                    thread {
+                        (it as TextView).text = "===="
+                    }
+                }
+
+
             })
 
         })
+
+
+        val obtainStyledAttributes =
+            obtainStyledAttributes(intArrayOf(android.R.attr.actionBarSize))
+
+        val dimension = obtainStyledAttributes.getDimension(0, 0f)
+        Log.e("TAG", "onCreate: ========${dimension}")
+        obtainStyledAttributes.recycle()
 
     }
 
