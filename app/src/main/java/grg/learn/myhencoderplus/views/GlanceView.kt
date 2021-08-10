@@ -4,6 +4,7 @@ import android.animation.ObjectAnimator
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
+import android.graphics.Path
 import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
 import android.util.Log
@@ -38,12 +39,22 @@ class GlanceView @JvmOverloads constructor(
 
     }
 
+    private val roundPath = Path()
+
+    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
+        super.onSizeChanged(w, h, oldw, oldh)
+
+        val radius = width/2f
+        roundPath.addCircle(width/2f,height/2f,radius,Path.Direction.CW)
+    }
+
     override fun dispatchDraw(canvas: Canvas){
         super.dispatchDraw(canvas)
         gradient.setBounds(
             0,0,width,height
         )
         canvas.withSave {
+            clipPath(roundPath)
             translate(0f,offset * height)
             clipRect(
                 0f,
