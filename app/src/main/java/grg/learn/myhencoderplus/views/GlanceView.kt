@@ -74,7 +74,7 @@ class GlanceView @JvmOverloads constructor(
         super.onSizeChanged(w, h, oldw, oldh)
 
         radius = width / 2f - ringWidth/2f
-        roundPath.addCircle(width / 2f, height / 2f, radius, Path.Direction.CW)
+        roundPath.addCircle(width / 2f, height / 2f, radius-ringWidth/2f, Path.Direction.CW)
 
         /** 配置着色器 **/
         mPaint.shader = LinearGradient(
